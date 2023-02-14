@@ -62,14 +62,14 @@ app.post("/addanime", (req,res)=>{
     animeList.anime.push({id:animeList.anime.length + 1, Name : newName, Episodes : newEpisodes, Completed: newCompleted, Raiting: newRaiting})
 })
 
-app.get("/delete/:id",(req,res) =>{
-    var animeIndex = req.params.id
-
-    console.log(animeIndex)
-    if(animeIndex > 0){
-        animeList.anime.splice(animeIndex - 1,1)
-        res.send("has been deleted")
+app.delete("/animelist/:id", (req, res) => {
+    var animeIndex = animeList.anime.findIndex(x => x.id == req.params.id)
+    if(animeIndex < 0){
+        return res.status(404).send("anime not found")
     }
+
+    animeList.anime.splice(animeIndex , 1)
+    res.send("Anime Deleted!")
 })
 
 app.listen(PORT,() =>{
