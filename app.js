@@ -1,9 +1,13 @@
 const express = require('express')
 const app = express()
-const PORT = process.env.PORT ||3000
+
 const https = require("https")
 const bodyParser = require('body-parser')
+
 app.use(bodyParser.urlencoded({extended:true}))
+
+const PORT = process.env.PORT ||3000
+
 
 const animeList = { anime: [
     { id:"1", Name: "One Piece", Episodes: "1050",Completed: "Caught Up", Raiting: "8/10"},
@@ -57,9 +61,11 @@ app.post("/addanime", (req,res)=>{
     let newEpisodes = req.body.Episodes
     let newCompleted = req.body.Completed
     let newRaiting = req.body.Raiting
+    let tempId = animeList.anime.length + 1
+    let newId = tempId.toString()
     console.log(newEpisodes)
 
-    animeList.anime.push({id:animeList.anime.length + 1, Name : newName, Episodes : newEpisodes, Completed: newCompleted, Raiting: newRaiting})
+    animeList.anime.push({id: newId, Name : newName, Episodes : newEpisodes, Completed: newCompleted, Raiting: newRaiting})
 })
 
 app.delete("/animelist/:id", (req, res) => {
