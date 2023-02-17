@@ -16,7 +16,7 @@ app.use(express.json())
 const PORT = process.env.PORT ||3000
 
 
-const animeList = { anime: [
+const animeList = [
     { id:1, name: "One Piece", episodes: "1050",completed: "Caught Up", raiting: "8/10"},
     { id:2, name: "Bleach", episodes: "379", completed: "Caught Up", raiting: "7/10"},
     { id:3, name: "Dragonball ", episodes: "153", completed: "Caught Up", raiting: "8/10"},
@@ -40,7 +40,7 @@ const animeList = { anime: [
     { id:21, name: "One Punch Man", episodes: "24", completed: "Caught Up", raiting: "6/10"},
     { id:22, name: "Demon Slayer", episodes: "44", completed: "Caught Up", raiting: "8/10"},
     { id:23, name: "K-On", episodes: "39", completed: "Caught Up", raiting: "6/10"}
-]}
+]
 app.get("/",(req,res) => {
     res.sendFile(__dirname + "/index.html")
 })
@@ -50,10 +50,10 @@ app.get("/animelist", (req, res) => {
 })
 
 app.get("/animelist/anime/:id", (req,res) => {
-    var animeIndex = animeList.anime.findIndex(x => x.id == req.params.id)
+    var animeIndex = animeList.findIndex(x => x.id == req.params.id)
 
-    if(animeList.anime[animeIndex] != null){
-        res.send(animeList.anime[animeIndex])
+    if(animeList[animeIndex] != null){
+        res.send(animeList[animeIndex])
     }
 })
 
@@ -69,17 +69,17 @@ app.post("/addanime", (req,res)=>{
     let newCompleted = req.body.completed
     let newRaiting = req.body.raiting
 
-    animeList.anime.push({id: animeList.anime.length + 1, name : newName, episodes : newEpisodes, completed: newCompleted, raiting: newRaiting})
+    animeList.push({id: animeList.length + 1, name : newName, episodes : newEpisodes, completed: newCompleted, raiting: newRaiting})
     res.send("completed")
 })
 
 app.delete("/animelist/:id", (req, res) => {
-    var animeIndex = animeList.anime.findIndex(x => x.id == req.params.id)
+    var animeIndex = animeList.findIndex(x => x.id == req.params.id)
     if(animeIndex < 0){
         return res.status(404).send("anime not found")
     }
 
-    animeList.anime.splice(animeIndex , 1)
+    animeList.splice(animeIndex , 1)
     res.send("Anime Deleted!")
 })
 
