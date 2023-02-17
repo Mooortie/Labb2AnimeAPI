@@ -57,11 +57,12 @@ app.get("/addanime",(req,res) => {
 app.post("/addanime", (req,res)=>{
     
     let newName = req.body.name
-    let newEpisodes = req.body.Episodes
-    let newCompleted = req.body.Completed
-    let newRaiting = req.body.Raiting
+    let newEpisodes = req.body.episodes
+    let newCompleted = req.body.completed
+    let newRaiting = req.body.raiting
 
-    animeList.anime.push({id: animeList.anime.length + 1, name : newName, Episodes : newEpisodes, Completed: newCompleted, Raiting: newRaiting})
+    animeList.anime.push({id: animeList.anime.length + 1, name : newName, episodes : newEpisodes, completed: newCompleted, raiting: newRaiting})
+    res.send("completed")
 })
 
 app.delete("/animelist/:id", (req, res) => {
