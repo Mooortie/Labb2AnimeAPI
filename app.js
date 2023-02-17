@@ -11,6 +11,7 @@ const https = require("https")
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.json())
 
 const PORT = process.env.PORT ||3000
 
@@ -62,6 +63,7 @@ app.get("/addanime",(req,res) => {
 
 app.post("/addanime", (req,res)=>{
     
+    console.log(req.body)
     let newName = req.body.name
     let newEpisodes = req.body.episodes
     let newCompleted = req.body.completed
