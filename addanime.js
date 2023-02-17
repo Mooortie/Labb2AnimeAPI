@@ -11,7 +11,7 @@ document.getElementById('submit').addEventListener('click', async () => {
         body: JSON.stringify(Data)
     }
     console.log(req)
-    const res = await fetch('/animelist', req)
+    const res = await fetch('/addanime', req)
     console.log(res)
     if(res.ok){
         document.getElementById('result').innerText = 'Anime successfully added.'
