@@ -33,7 +33,7 @@ const animeList = { anime: [
     { id:21, name: "One Punch Man", episodes: "24", completed: "Caught Up", raiting: "6/10"},
     { id:22, name: "Demon Slayer", episodes: "44", completed: "Caught Up", raiting: "8/10"},
     { id:23, name: "K-On", episodes: "39", completed: "Caught Up", raiting: "6/10"}
-]
+]}
 app.get("/",(req,res) => {
     res.sendFile(__dirname + "/index.html")
 })
